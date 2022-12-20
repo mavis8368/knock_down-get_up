@@ -32,7 +32,7 @@ def set_data():
     df1 = df.dropDuplicates()
     df1.show()
     print('Count of ids: {0}'.format(df1.count()))
-    print('Count of distinct ids: {0}'.format(df1.select([c for c in df.columns if c != 'id']).distinct().count()))
+    print('Count of distinct ids: {0}'.format(df1.select([c for c in df.columns if c != 'id']).distinct().show()))
     df2 = df1.dropDuplicates(subset=[c for c in df1.columns if c != 'id'])
     df2.show()
     # agg方法
@@ -148,4 +148,14 @@ def data_analysis():
     hists = fraud_df.select('balance').rdd.flatMap(lambda row: row).histogram(20)
 
 if __name__ == '__main__':
-    data_analysis()
+    # set_data()
+    num = 0
+    for i in range(3, 100):
+        for j in range(3, 100):
+            if 2/i + 2/j > 1:
+                print(i,j)
+                print(2/i, 2/j)
+                num += 1
+            else:
+                break
+    print(num)
